@@ -2,6 +2,7 @@
 tasks = []
 
 
+    # US-1: добавление новой задачи
 def add_task(title):
     if not title.strip():
         print("Название задачи не может быть пустым.")
