@@ -21,20 +21,38 @@ def list_tasks():
         print(f'{number}. {task["title"]} — {status}')
 
 
-def complete_task(number):
-    if 1 <= number <= len(tasks):
-        tasks[number - 1]["done"] = True
-        print("Задача отмечена выполненной.")
-    else:
-        print("Неверный номер задачи.")
+
+def complete_task():
+    list_tasks()
+    if not tasks:
+        return
+
+    try:
+        number = int(input("Орындалған тапсырманың нөмірі: "))
+        if 1 <= number <= len(tasks):
+            tasks[number - 1]["done"] = True
+            print("Тапсырма орындалды деп белгіленді.")
+        else:
+            print("Қате: мұндай нөмір жоқ.")
+    except ValueError:
+        print("Қате: бүтін сан енгізіңіз.")
 
 
-def delete_task(number):
-    if 1 <= number <= len(tasks):
-        tasks.pop(number - 1)
-        print("Задача удалена.")
-    else:
-        print("Неверный номер задачи.")
+def delete_task():
+    list_tasks()
+    if not tasks:
+        return
+
+    try:
+        number = int(input("Жойылатын тапсырманың нөмірі: "))
+        if 1 <= number <= len(tasks):
+            removed = tasks.pop(number - 1)
+            print(f"'{removed['title']}' тапсырмасы жойылды.")
+        else:
+            print("Қате: мұндай нөмір жоқ.")
+    except ValueError:
+        print("Қате: бүтін сан енгізіңіз.")
+
 
 
 def main():
